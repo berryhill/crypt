@@ -1,0 +1,17 @@
+---
+
+-
+  name: Start
+  hosts: localhost
+  tasks:
+  -
+    name: Create bitcoind docker volume
+    command: docker volume create --name=bitcoind-data
+  -
+    name: Run bitcoind docker container
+    command: docker run -v bitcoind-data:/bitcoin --name=bitcoind-node -d \
+        -p 8333:8333 \
+        -p 127.0.0.1:8332:8332 \
+        -e RPCUSER={{ username }} \
+        -e RPCPASSWORD={{ password }} \
+        kylemanna/bitcoind
