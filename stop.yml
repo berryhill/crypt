@@ -1,0 +1,12 @@
+---
+
+-
+  name: Stop
+  hosts: localhost
+  tasks:
+  -
+    name: Stop container
+    command: docker stop bitcoind-node
+  -
+    name: Remove all images
+    command: docker rm -v bitcoind-node
